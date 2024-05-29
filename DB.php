@@ -46,7 +46,7 @@ class DB {
     }
 
     public function new_user($login, $password) {
-        $this->link->query("INSERT INTO `users` (name, pass, email) values ('', '$password', '$login') ");
+        $this->link->query("INSERT INTO `users` (name, password) values ('$login', '$password' ) ");
     }
 
     public function check_login($login) {
