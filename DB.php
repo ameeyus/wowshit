@@ -37,7 +37,7 @@ class DB {
 
 
     public function check_user($login, $password) {
-        $sql_result = $this->link->query("SELECT * FROM `users` WHERE `name` = '$login' AND `password` = '$password'");
+        $sql_result = $this->link->query("SELECT * FROM `users` WHERE `email` = '$login' AND `password` = '$password'");
         if ($sql_result->num_rows) {
             $user = $sql_result->fetch_assoc();
             return $user["id"];
@@ -46,7 +46,7 @@ class DB {
     }
 
     public function new_user($login, $password) {
-        $this->link->query("INSERT INTO `users` (name, password) values ('$login', '$password' ) ");
+        $this->link->query("INSERT INTO `users` (name, password, email) values ('', '$password', '$login') ");
     }
 
     public function check_login($login) {
@@ -59,6 +59,24 @@ class DB {
 
 
     public function new_photo ($uid, $image, $text) {
-        $this->link->query("INSERT INTO `photos` (uid, image, text, tags) VALUES ( $uid, '$image', '$text', '')");
+        $this->link->query("INSERT INTO `photos` (uid, image, text, name) VALUES ( $uid, '$image', '$text', '')");
+    }
+    public function get_photo_by_id($photo_id) {
+        $sql_result = $this->link->query(
+            "SELECT `p`.*, `u`.`name` FROM `photos` `p` LEFT JOIN `users` `u` on `u`.`id` = `p`.`uid` WHERE `p`.`id` = '$photo_id'"
+        );
+        if ($sql_result->num_rows) {
+            return $sql_result->fetch_assoc();
+        }
+        return false;
+    }
+    public function get_photo_comments($photo_id) {
+        $sql_result = $this->link->query(
+            "SELECT `c`.*,`u` . `name` FROM `comments` `c` LEFT JOIN `users` `u` on `u` . `id` = `c`.`uid` WHERE `c` . `pid` = {$photo_id}"
+        );
+        if ($sql_result->num_rows) {
+            return $sql_result->fetch_all( MYSQLI_ASSOC);
+        }
+        return [];
     }
 }

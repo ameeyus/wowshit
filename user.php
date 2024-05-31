@@ -25,6 +25,7 @@ if($user_id) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="10.css">
+    <link rel="stylesheet" href="meta.css">
     <title>Document</title>
 </head>
 <body>
@@ -33,9 +34,9 @@ if($user_id) {
         
         <h1>Галерея пользователя</h1>
         <div id="grid">
-        <?php foreach ($data as $photo): ?>
-            <?= (new Photos\Photo($photo["image"], $photo["text"]))->get_html   () ?>
-        <?php endforeach; ?>
+            <?php foreach ($data as $photo): ?>
+                <?= (new Photos\Photo($photo["id"], $photo["image"], $photo["text"]))->get_html() ?>
+            <?php endforeach; ?>
     </div>
     <?php else: ?>
         <div class="form">
@@ -45,9 +46,9 @@ if($user_id) {
                 <input type="password" placeholder="Пароль" name="password">
                 <button>Вход</button>
 
-                <?php if (isset($_GET["error"])): ?>
-                 <p class="error"><?= $error ?></p>
-                 <?php endif ?>
+             <?php if (isset($_GET["error"])): ?>
+             <p class="error"><?= $error ?></p>
+             <?php endif ?>
             </form>
             <form action="signup.php" method="post">
                 <h1>Регистрация</h1>
@@ -65,6 +66,6 @@ if($user_id) {
         </div>
     <?php endif; ?>
     <?php include "add_form.php" ?>
-    <script src="script.js"></script>
+    <script src="11.js"></script>
 </body>
 </html>

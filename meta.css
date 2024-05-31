@@ -6,7 +6,7 @@
     header a {
         display: none;
     }
-    .mobile_icon{
+    .mobile-icon{
         display: block;
         width: 2rem;
         height: 2rem;
@@ -16,7 +16,7 @@
         margin: 1rem;
         margin-left: auto;
     }
-    .mobile_icon img{
+    .mobile-icon img{
         width: 100%;
     }
     .popup{
@@ -25,7 +25,7 @@
         width: 100%;
         left: 0;
         background: rgba(255, 255, 255, .8);
-        
+
     }
     header.open .popup a{
         display: block;
@@ -37,19 +37,19 @@
         grid-template-columns: 1fr;
     }
     /* Стили CSS */
-/* ... */
-.mobile_icon, .close_icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 24px; /* Задаем одинаковую ширину для иконок */
-    height: 24px; /* Задаем одинаковую высоту для иконок */
-    cursor: pointer;
-}
+    /* ... */
+    .mobile-icon, .close_icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 24px; /* Задаем одинаковую ширину для иконок */
+        height: 24px; /* Задаем одинаковую высоту для иконок */
+        cursor: pointer;
+    }
 
-.mobile_icon img, .close_icon img {
-    width: 100%; /* Растягиваем изображения на всю ширину контейнера */
-    height: 100%; /* Растягиваем изображения на всю высоту контейнера */
-}
+    .mobile-icon img, .close_icon img {
+        width: 100%; /* Растягиваем изображения на всю ширину контейнера */
+        height: 100%; /* Растягиваем изображения на всю высоту контейнера */
+    }
 
 }

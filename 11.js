@@ -38,9 +38,9 @@ document.querySelector("#cancel").addEventListener("click", function() {
     document.querySelector("#add_new_photo").classList.remove("open");
 });
 
-document.querySelector("#add_photo").addEventListener("click", function() { 
-    let src = document.querySelector("#new_photo_src").value; 
-    let text = document.querySelector("#new_photo_text").value; 
+document.querySelector("#add_photo").addEventListener("click", function() {
+    let src = document.querySelector("#new_photo_src").value;
+    let text = document.querySelector("#new_photo_text").value;
     if (src && text) {
         let newPhotoDiv = document.createElement("div");
         newPhotoDiv.classList.add("photo");
@@ -80,4 +80,13 @@ for (let photo of photos) {
 
 document.querySelector("#popup_photo").addEventListener("click", function(){
     this.classList.remove("open");
+});
+
+document.querySelector("#cancel").addEventListener("click", function (e) {
+    e.preventDefault();
+    document.querySelector("#add_new_photo").classList.remove("open");
+});
+
+array.forEach(element => {
+
 });
