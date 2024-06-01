@@ -197,3 +197,32 @@ h1{
     font-style: italic;
     font-size: .9rem;
 }
+
+.addComment{
+    width: 500px;
+    height: 250px;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 20px 40px;
+}
+
+#Comment,.Send{
+    margin-left: 40px;
+    font-size: 22px;
+    padding: 10px 0 0 10px;
+    width: 350px;
+    border-radius: 10px;
+    border: 1px solid black ;
+}
+
+.Send{
+    width: 350px;
+
+    background-color: #1ac22f;
+    color: black;
+    margin-top: 15px;
+    &:hover{
+        background-color: #118d22;
+    }
+}
