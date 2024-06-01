@@ -35,7 +35,7 @@ if($user_id) {
         <h1>Галерея пользователя</h1>
         <div id="grid">
             <?php foreach ($data as $photo): ?>
-                <?= (new Photos\Photo($photo["id"], $photo["image"], $photo["text"]))->get_html() ?>
+                <?= (new Photos\Photo($photo["image"], $photo["text"], $photo["id"]))->get_html   () ?>
             <?php endforeach; ?>
     </div>
     <?php else: ?>

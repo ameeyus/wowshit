@@ -1,11 +1,11 @@
 <?php
-    session_start();
-    $user_id = $_SESSION['user_id'] ?? false;
-    $photo_id = intval($_GET['id']);
-    require "vendor/autoload.php";
-    $db = new \Photos\DB();
-    $photo  = $db->get_photo_by_id($photo_id);
-    $comments = $db->get_photo_comments($photo_id);
+session_start();
+$user_id = $_SESSION["user_id"] ?? false;
+$photo_id = intval($_GET["id"]);
+require "vendor/autoload.php";
+$db = new \Photos\DB();
+$photo  = $db->get_photo_by_id($photo_id);
+$comments = $db->get_photo_comments($photo_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
