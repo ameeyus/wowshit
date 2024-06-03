@@ -53,7 +53,7 @@ class DB {
     }
 
     public function new_photo($uid, $image, $text) {
-        $this->link->query("INSERT INTO `photos` (uid, image, text, name) VALUES ($uid, '$image', '$text', '')");
+        $this->link->query("INSERT INTO `photos` (uid, image, text, tags) VALUES ($uid, '$image', '$text', '')");
     }
 
     public function get_photo_by_id($photo_id) {
@@ -64,18 +64,35 @@ class DB {
         return false;
     }
 
-    public function get_photo_comments($photo_id) {
-        $sql_result = $this->link->query("SELECT `c`.*, `u`.`name` FROM `comments` `c` LEFT JOIN `users` `u` ON `u`.`id` = `c`.`uid` WHERE `c`.`pid` = {$photo_id}");
-        if ($sql_result->num_rows) {
-            return $sql_result->fetch_all(MYSQLI_ASSOC);
-        }
-        return [];
-    }
+
 
     public function add_comment($photo_id, $user_id, $text) {
         $stmt = $this->link->prepare("INSERT INTO `comments` (pid, uid, text, post_date) VALUES (?, ?, ?, NOW())");
         $stmt->bind_param("iis", $photo_id, $user_id, $text);
         $stmt->execute();
         $stmt->close();
+        $new_id = $this->link->insert_id;
+        $new_comment = $this->link->query("SELECT c.post_date, c.text, u.name FROM comments c LEFT JOIN photos.users u on u.id = c.uid WHERE c.id = $new_id");
+        return $new_comment->fetch_assoc();
+    }
+
+    public function add_photo_comment($pid, $uid, $text)
+    {
+        $date = date("Y-m-d");
+        $this->link->query("INSERT INTO `comments` (pid, uid, text, post_date) VALUES ('$pid', '$uid', '$text', '$date')");
+        $last_id = $this->link->insert_id;
+        $inserted_comment= $this->link->query(
+            "SELECT `c` .*, `u` .  `name` FROM `comments` `c` LEFT JOIN `users` `u` . `uid` WHERE `c` . `id` = `$last_id`");
+        return $inserted_comment->fetch_assoc();
+    }
+
+    public function get_photo_comments($photo_id) {
+        $sql_result = $this->link->query(
+            "SELECT `c`.*, `u`.`name` FROM `comments` `c` LEFT JOIN `users` `u` on `u`.`id` = `c`.`uid` WHERE `c`.`pid` = '$photo_id' ORDER BY `id` DESC");
+
+        if ($sql_result->num_rows) {
+            return $sql_result->fetch_all(MYSQLI_ASSOC);
+        }
+        return [];
     }
 }

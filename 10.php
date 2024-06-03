@@ -15,7 +15,7 @@ $data = $db->get_all_photos();
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="stylesheet" href="./10.css">
     <link rel="stylesheet" href="meta.css">
-        <title>Document</title>
+    <title>Document</title>
 </head>
 <body>
 <?php include "header.php" ?>

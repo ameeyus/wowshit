@@ -48,9 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["comment"])) {
     </div>
     <form class="addComment" method="POST" action="">
         <h1>Введите комментарий</h1>
-        <textarea name="comment" id="Comment" cols="30" rows="4"></textarea>
-        <button class="Send" type="submit">Отправить</button>
+        <textarea name="comment" id="text" cols="30" rows="4"></textarea>
+        <button id="add_comment" class="Send" type="submit">Отправить</button>
     </form>
 </div>
+<script src="image.js"></script>
 </body>
 </html>
